@@ -16,7 +16,16 @@ class CarsController extends Controller
      */
     public function index(Request $request)
     {
-        $cars = Car::paginate($request->query('per_page'));
+        $brand = $request->query('brand');
+        $model = $request->query('model');
+        $query = Car::query();
+        if ($brand) {
+            $query->searchByBrand($brand);
+        }
+        if ($model) {
+            $query->searchByModel($model);
+        }
+        $cars = $query->paginate($request->query('per_page', 5));
         return $cars;
     }
 
