@@ -81,7 +81,7 @@ class CarsController extends Controller
      */
     public function update(UpdateCarRequest $request, Car $car)
     {
-        $data = $request->validate();
+        $data = $request->validated();
         $car->update($data);
         return $car;
     }
