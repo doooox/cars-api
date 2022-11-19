@@ -22,6 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::controller(CarsController::class)->group(function () {
     Route::resource('cars', CarsController::class);
-    Route::delete('cars/{car}', [CarsController::class, 'destroy']);
     Route::put('cars/{car}', [CarsController::class, 'update']);
 });
