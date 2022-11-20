@@ -16,17 +16,13 @@ class CarsController extends Controller
      */
     public function index(Request $request)
     {
-        $brand = $request->query('brand');
-        $model = $request->query('model');
-        $query = Car::query();
-        if ($brand) {
-            $query->searchByBrand($brand);
-        }
-        if ($model) {
-            $query->searchByModel($model);
-        }
-        $cars = $query->paginate($request->query('per_page', 5));
-        return $cars;
+        // $perPage = $request->query('per_page', 5);
+        // $brandTerm = $request->query('brand');
+        // $model = $request->query('model');
+
+        // return Car::query()->searchByBrand($brandTerm)->searchByModel($model)->paginate($perPage);
+        return Car::all();
+
     }
 
     /**
@@ -57,9 +53,9 @@ class CarsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Car $car)
+    public function show($id)
     {
-        return $car;
+        return Car::find($id);
     }
 
     /**

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarsController;
+use App\Http\Controllers\AuthController;
 
 
 /*
@@ -22,5 +23,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::controller(CarsController::class)->group(function () {
     Route::resource('cars', CarsController::class);
-    Route::put('cars/{car}', [CarsController::class, 'update']);
 });
+Route::controller(AuthController::class)->group(
+    function () {
+        Route::post('register', 'register');
+        Route::post('login', 'login');
+        Route::post('refresh', 'refresh');
+        Route::post('logout', 'logout');
+    }
+);
